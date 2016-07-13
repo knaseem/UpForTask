@@ -10,7 +10,20 @@ import UIKit
 
 class UpToTaskViewController: UITableViewController {
     
-    var items: [UpToTaskItem]
+    @IBAction func addItem(sender: UIBarButtonItem) {
+        let newRowIndex = items.count
+        let item = UpToTaskItem()
+        item.text = "I am a new row"
+        item.checked = false
+        items.append(item)
+        let indexPath = NSIndexPath(forRow: newRowIndex, inSection: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRowsAtIndexPaths(indexPaths,
+                                         withRowAnimation: .Automatic)
+}
+    
+    
+        var items: [UpToTaskItem]
     
     required init?(coder aDecoder: NSCoder) {
         
@@ -80,7 +93,7 @@ class UpToTaskViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-       
+    
     func configureCheckmarkForCell(cell: UITableViewCell,
                                    withUpToTaskItem item: UpToTaskItem) {
         if item.checked {
